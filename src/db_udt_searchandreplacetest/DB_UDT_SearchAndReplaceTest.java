@@ -16,5 +16,7 @@ public class DB_UDT_SearchAndReplaceTest {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Dialog1 d1 = new Dialog1();
+        d1.setVisible(true);
     }
 }
