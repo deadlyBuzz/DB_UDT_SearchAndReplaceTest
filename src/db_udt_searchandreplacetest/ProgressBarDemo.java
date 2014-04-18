@@ -127,7 +127,7 @@ public class ProgressBarDemo extends JPanel
     }
 
     /**
-     * Invoked when task's progress property changes.
+     * Invoked when tasks progress property changes.
      */
     public void propertyChange(PropertyChangeEvent evt) {
         if ("progress" == evt.getPropertyName()) {

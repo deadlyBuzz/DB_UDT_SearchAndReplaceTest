@@ -39,7 +39,6 @@ public class Dialog1 extends javax.swing.JFrame
         SourceCode = new javax.swing.JTextArea();
         goButton = new javax.swing.JButton();
         jProgressBar1 = new javax.swing.JProgressBar();
-        updateTheFlippingProgressBar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,13 +57,6 @@ public class Dialog1 extends javax.swing.JFrame
 
         jProgressBar1.setStringPainted(true);
 
-        updateTheFlippingProgressBar.setText("UTFPB");
-        updateTheFlippingProgressBar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateTheFlippingProgressBarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,10 +69,7 @@ public class Dialog1 extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(goButton)
                         .addGap(18, 18, 18)
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(updateTheFlippingProgressBar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -94,9 +83,7 @@ public class Dialog1 extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(goButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(updateTheFlippingProgressBar)
-                .addGap(5, 5, 5))
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -107,24 +94,19 @@ public class Dialog1 extends javax.swing.JFrame
      * @param evt 
      */
     private void goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goButtonActionPerformed
-        // Update the Progressbar to include a new Maximum count.   
-        jProgressBar1.setMaximum(SourceCode.getLineCount());
+        // Update the Progressbar to include a new Maximum count.           
+        
         VariableListProcessor VPL = new VariableListProcessor(SourceCode);
         VPL.addPropertyChangeListener(this); // Sdet this class (Dialog1) as the propertychange listener.
-        //java.awt.EventQueue.invokeLater(VPL);
+        java.awt.EventQueue.invokeLater(VPL);
         VPL.execute();
+        
+        //** Try an anonymous local swingWorker Class to implement the tracing.
+        
+        
+        
         System.out.println("GO Pressed: "+String.valueOf(jProgressBar1.getValue()));
     }//GEN-LAST:event_goButtonActionPerformed
-
-    private void updateTheFlippingProgressBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTheFlippingProgressBarActionPerformed
-        // TODO add your handling code here:
-        jProgressBar1.setValue(jProgressBar1.getValue()+1);
-        if(jProgressBar1.getValue()>99)
-            jProgressBar1.setValue(0);
-        this.validate();
-        this.repaint();
-        System.out.println("UTFPB Pressed: "+String.valueOf(jProgressBar1.getValue()));
-    }//GEN-LAST:event_updateTheFlippingProgressBarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,7 +148,6 @@ public class Dialog1 extends javax.swing.JFrame
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JButton updateTheFlippingProgressBar;
     // End of variables declaration//GEN-END:variables
 
     // called when an action is triggered.
@@ -182,7 +163,7 @@ public class Dialog1 extends javax.swing.JFrame
         if ("progress" == evt.getPropertyName()) {
             int progress = (Integer) evt.getNewValue();            
             jProgressBar1.setValue(progress);                                
-            System.out.println("P:"+String.valueOf(jProgressBar1.getValue()));
+            //System.out.println("P:"+String.valueOf(jProgressBar1.getValue()));
             jProgressBar1.repaint();
         }
     }
